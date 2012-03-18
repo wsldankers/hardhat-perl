@@ -1,0 +1,8 @@
++0,0:->
++3,10:bar->BBBBBBBBBB
++3,10:foo->AAAAAAAAAA
++7,10:dir/bar->DDDDDDDDDD
++7,10:dir/foo->CCCCCCCCCC
++11,10:dir/sub/bar->FFFFFFFFFF
++11,10:dir/sub/foo->EEEEEEEEEE
+
