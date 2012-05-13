@@ -58,6 +58,24 @@ STATIC MGVTBL hardhat_maker_vtable = {
 	.svt_free = free_magic_hardhat_maker
 };
 
+static hardhat_maker_t *find_magic_hardhat_maker(SV *sv) {
+	void **obj;
+	hardhat_maker_t *hhm;
+
+	obj = find_magic(SvRV(sv), &hardhat_maker_vtable);
+	if(!obj)
+		croak("Invalid hardhat_maker object");
+
+    hhm = *obj;
+	if(!hhm)
+		croak("Invalid hardhat_maker object");
+
+	if(hardhat_maker_fatal(hhm))
+		croak("Invalid hardhat_maker object");
+
+	return hhm;
+}
+
 MODULE = Hardhat::Maker  PACKAGE = Hardhat::Maker
 
 PROTOTYPES: ENABLE
@@ -77,4 +95,53 @@ CODE:
 OUTPUT:
 	RETVAL
 
+void
+add(SV *self, SV *key, SV *data)
+PREINIT:
+	void *keybuf, *databuf;
+	STRLEN keylen, datalen;
+	hardhat_maker_t *hhm;
+CODE:
+    hhm = find_magic_hardhat_maker(self);
 
+	keybuf = SvPV(key, keylen);
+	databuf = SvPV(data, datalen);
+
+	if(keylen > 65535)
+		croak("Key too large (%lu > 65535 bytes)", (unsigned long)keylen);
+
+	if(!hardhat_maker_add(hhm, keybuf, keylen, databuf, datalen))
+		croak("%s", hardhat_maker_error(hhm));
+
+void
+parents(SV *self, ...)
+PREINIT:
+	SV *data;
+	void *databuf;
+	STRLEN datalen;
+	hardhat_maker_t *hhm;
+CODE:
+    hhm = find_magic_hardhat_maker(self);
+
+	if(items == 1) {
+		databuf = NULL;
+		datalen = 0;
+	} else if(items == 2) {
+		data = ST(1);
+		databuf = SvPV(data, datalen);
+	} else {
+		croak("Too many arguments to Hardhat::Maker::parents()");
+	}
+
+	if(!hardhat_maker_parents(hhm, databuf, datalen))
+		croak("%s", hardhat_maker_error(hhm));
+
+void
+finish(SV *self)
+PREINIT:
+	hardhat_maker_t *hhm;
+CODE:
+    hhm = find_magic_hardhat_maker(self);
+
+	if(!hardhat_maker_finish(hhm))
+		croak("%s", hardhat_maker_error(hhm));
