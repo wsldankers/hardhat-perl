@@ -12,8 +12,7 @@ my $build = new Module::Build(
 	license => 'perl',
 	create_makefile_pl => 'passthrough',
 	build_requires => {'ExtUtils::CBuilder' => 0},
-	extra_compiler_flags => '-I/opt/hardhat/include',
-	extra_linker_flags => '-L/opt/hardhat/lib -Wl,-rpath,/opt/hardhat/lib -lhardhat',
+	extra_linker_flags => '-lhardhat',
 );
 
 $build->create_build_script;
