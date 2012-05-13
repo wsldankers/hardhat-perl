@@ -28,12 +28,26 @@ Use eval {} as required.
 
 =head2 Usage
 
-=head3 $hh = new Hardhat::Maker($filename)
+=head3 $hhm = new Hardhat::Maker($filename)
 
 Creates a new Hardhat::Maker object. A database will be created at
 $filename.
 
-=head3 FIXME
+=head3 $hhm->add($key, $val)
+
+Add a key to the database with the specified value.
+
+=head3 $hhm->parents([$val])
+
+Add all non-existent intermediate parent directory entries to the database.
+The optional argument specifies the data value to use for each entry.
+If not argument is specified, the empty string is used.
+
+=head3 $hhm->finish
+
+Write out the indexes and superblock, thereby closing the database.
+After invoking this method no further modifications can be done to
+this database.
 
 =head1 Copyright information
 
