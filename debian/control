@@ -1,0 +1,15 @@
+Source: hardhat-perl
+Section: perl
+Priority: extra
+Maintainer: Wessel Dankers <wsl@fruit.je>
+Build-Depends: cdbs, debhelper (>= 7), libmodule-build-perl
+Standards-Version: 3.7.2
+
+Package: libhardhat-perl
+Architecture: all
+Depends: ${perl:Depends}, ${shlibs:Depends}
+Description: Write-once database with filesystem semantics
+ Store files in a write-once database. Keys can be browsed by
+ filesystem-like operations.
+ .
+ This package provides perl bindings for the library.

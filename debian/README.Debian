@@ -1,0 +1,6 @@
+hardhat-perl
+------------
+
+Perl bindings for the hardhat library.
+
+ -- Wessel Dankers <wsl@fruit.je>  Thu, 09 Aug 2012 14:00:44 +0200
