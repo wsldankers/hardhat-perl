@@ -18,7 +18,11 @@ __END__
 
 =encoding utf8
 
-=head1 Hardhat::Maker
+=head1 NAME
+
+Hardhat::Maker - wrapper for writing libhardhat files
+
+=head1 SYNOPSIS
 
 Hardhat::Maker is a wrapper around the libhardhat library, and provides
 a way to generate hardhat databases.
@@ -26,32 +30,32 @@ a way to generate hardhat databases.
 All functions and methods die() should an error be encountered.
 Use eval {} as required.
 
-=head2 Usage
+=head2 USAGE
 
-=head3 $hhm = new Hardhat::Maker($filename)
+=head2 $hhm = new Hardhat::Maker($filename)
 
 Creates a new Hardhat::Maker object. A database will be created at
 $filename.
 
-=head3 $hhm->add($key, $val)
+=head2 $hhm->add($key, $val)
 
 Add a key to the database with the specified value.
 
-=head3 $hhm->parents([$val])
+=head2 $hhm->parents([$val])
 
 Add all non-existent intermediate parent directory entries to the database.
 The optional argument specifies the data value to use for each entry.
 If not argument is specified, the empty string is used.
 
-=head3 $hhm->finish
+=head2 $hhm->finish
 
 Write out the indexes and superblock, thereby closing the database.
 After invoking this method no further modifications can be done to
 this database.
 
-=head1 Copyright information
+=head1 COPYRIGHT
 
-Copyright (c) 2011,2012 Wessel Dankers <wsl@fruit.je>.
+Copyright (c) 2011,2012,2014 Wessel Dankers <wsl@fruit.je>.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
