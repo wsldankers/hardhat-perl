@@ -6,8 +6,6 @@ package Hardhat::Maker;
 
 use base qw(DynaLoader);
 
-our $VERSION = 1.00;
-
 bootstrap Hardhat::Maker;
 
 1;
