@@ -8,7 +8,7 @@ use Module::Build;
 
 my $build = new Module::Build(
 	dist_name => 'hardhat-perl',
-	dist_version => '1.0.0',
+	dist_version => '1.0.1',
 	dist_abstract => 'Wrapper for libhardhat',
 	module_name => 'Hardhat',
 	license => 'perl',
