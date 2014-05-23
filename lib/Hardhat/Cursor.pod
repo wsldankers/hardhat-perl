@@ -21,11 +21,11 @@ database.
 
 =head2 $cc->fetch()
 
-Fetch the next entry for this cursor. In scalar context, returns the data
-associated with the specified key (or undef if no more entries are
-available). In list context, returns the canonicalized key, the data and a
-unique numeric identifier for this datum (or the empty list if no more
-entries are available).
+Fetch the next entry for this cursor. In scalar context, returns the
+canonicalized key (or undef if no more entries are available). In list
+context, returns the canonicalized key, the data and a unique numeric
+identifier for this datum (or the empty list if no more entries are
+available).
 
 =head2 $cc->fetchn($limit)
 
