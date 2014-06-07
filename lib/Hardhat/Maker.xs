@@ -27,17 +27,18 @@
 static void *find_magic(SV *sv, MGVTBL *vtable) {
 	MAGIC *mg;
 
-	if(!sv)
+	if(!sv || !SvROK(sv))
 		return NULL;
 
-	if(!SvMAGICAL(sv))
+	sv = SvRV(sv);
+	if(!sv || !SvMAGICAL(sv))
 		return NULL;
 
-	for(mg = SvMAGIC(sv); mg; mg = mg->mg_moremagic)
-		if(mg->mg_virtual == vtable)
-			return SvPV_nolen(mg->mg_obj);
+	mg = mg_findext(sv, PERL_MAGIC_ext, vtable);
+	if(!mg)
+		return NULL;
 
-	return NULL;
+	return SvPV_nolen(mg->mg_obj);
 }
 
 static void *attach_magic(SV *sv, MGVTBL *vtable, const char *name, void *data, STRLEN len) {
@@ -62,7 +63,7 @@ static hardhat_maker_t *find_magic_hardhat_maker(SV *sv) {
 	void **obj;
 	hardhat_maker_t *hhm;
 
-	obj = find_magic(SvRV(sv), &hardhat_maker_vtable);
+	obj = find_magic(sv, &hardhat_maker_vtable);
 	if(!obj)
 		croak("Invalid hardhat_maker object");
 
