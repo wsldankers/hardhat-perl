@@ -88,10 +88,10 @@ static SV *generic_cursor(SV *self, SV *key, bool recursive) {
 	char *k;
 	HV *hash;
 
-	w.hardhat = SvRV(self);
 	obj = find_magic(self, &hardhat_vtable);
 	if(!obj)
 		croak("Invalid hardhat object");
+	w.hardhat = SvRV(self);
 
 	hh = *obj;
 	if(!hh)
