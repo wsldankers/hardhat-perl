@@ -67,7 +67,7 @@ static hardhat_maker_t *find_magic_hardhat_maker(SV *sv) {
 	if(!obj)
 		croak("Invalid hardhat_maker object");
 
-    hhm = *obj;
+	hhm = *obj;
 	if(!hhm)
 		croak("Invalid hardhat_maker object");
 
@@ -103,7 +103,7 @@ PREINIT:
 	STRLEN keylen, datalen;
 	hardhat_maker_t *hhm;
 CODE:
-    hhm = find_magic_hardhat_maker(self);
+	hhm = find_magic_hardhat_maker(self);
 
 	keybuf = SvPV(key, keylen);
 	databuf = SvPV(data, datalen);
@@ -122,7 +122,7 @@ PREINIT:
 	STRLEN datalen;
 	hardhat_maker_t *hhm;
 CODE:
-    hhm = find_magic_hardhat_maker(self);
+	hhm = find_magic_hardhat_maker(self);
 
 	if(items == 1) {
 		databuf = NULL;
@@ -142,7 +142,7 @@ finish(SV *self)
 PREINIT:
 	hardhat_maker_t *hhm;
 CODE:
-    hhm = find_magic_hardhat_maker(self);
+	hhm = find_magic_hardhat_maker(self);
 
 	if(!hardhat_maker_finish(hhm))
 		croak("%s", hardhat_maker_error(hhm));
