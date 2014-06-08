@@ -7,15 +7,15 @@ use Test::More;
 use Data::Dumper;
 use IO::Pipe;
 
-BEGIN { use_ok('Hardhat') or BAIL_OUT('need Hardhat to run') }
-BEGIN { use_ok('Hardhat::Maker') or BAIL_OUT('need Hardhat::Maker to run') }
+BEGIN { use_ok('File::Hardhat') or BAIL_OUT('need File::Hardhat to run') }
+BEGIN { use_ok('File::Hardhat::Maker') or BAIL_OUT('need File::Hardhat::Maker to run') }
 
 my $testhat = '/tmp/testdata.hh';
 
 unlink($testhat) or $!{ENOENT}
 	or BAIL_OUT("Can't unlink $testhat: $!");
 
-my $hhm = new_ok('Hardhat::Maker', [$testhat]) or BAIL_OUT('need a Hardhat::Maker object to run');
+my $hhm = new_ok('File::Hardhat::Maker', [$testhat]) or BAIL_OUT('need a File::Hardhat::Maker object to run');
 
 $hhm->add('', '');
 $hhm->add('bar', 'BBBBBBBBBB');
@@ -28,7 +28,7 @@ $hhm->parents;
 $hhm->finish;
 undef $hhm;
 
-my $hh = new_ok('Hardhat', [$testhat]) or BAIL_OUT('need a Hardhat object to run');
+my $hh = new_ok('File::Hardhat', [$testhat]) or BAIL_OUT('need a File::Hardhat object to run');
 
 is(scalar $hh->get(''), '', "lookup the root node (scalar)");
 is_deeply([$hh->get('')], ['', '', 0], "lookup the root node");

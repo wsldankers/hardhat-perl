@@ -1,8 +1,9 @@
-hardhat-perl (1.0.2) stable; urgency=low
+hardhat-perl (2.0.0) stable; urgency=low
 
   * Switch to dh
   * Fix segfaults resulting from incorrect use
   * Fix documentation
+  * Rename to File::Hardhat
 
  -- Wessel Dankers <wsl@fruit.je>  Sat, 07 Jun 2014 14:23:34 +0200
 

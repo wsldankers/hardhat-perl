@@ -5,7 +5,7 @@ Maintainer: Wessel Dankers <wsl@fruit.je>
 Build-Depends: debhelper (>= 7), libhardhat-dev, libmodule-build-perl
 Standards-Version: 3.7.2
 
-Package: libhardhat-perl
+Package: libfile-hardhat-perl
 Architecture: any
 Depends: ${perl:Depends}, ${shlibs:Depends}
 Description: Write-once database with filesystem semantics

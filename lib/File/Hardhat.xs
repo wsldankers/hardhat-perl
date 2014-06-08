@@ -1,6 +1,6 @@
 /******************************************************************************
 
-	Hardhat - Access hardhat databases in Perl
+	File::Hardhat - Access hardhat databases in Perl
 	Copyright (c) 2011,2012 Wessel Dankers <wsl@fruit.je>
 
 	This program is free software; you can redistribute it and/or modify
@@ -106,7 +106,7 @@ static SV *generic_cursor(SV *self, SV *key, bool recursive) {
 	hash = newHV();
 	attach_magic((SV *)hash, &hardhat_cursor_vtable, "hardhat_cursor", &w, sizeof w);
 	SvREFCNT_inc(w.hardhat);
-	return sv_bless(newRV_noinc((SV *)hash), gv_stashpv("Hardhat::Cursor", 0));
+	return sv_bless(newRV_noinc((SV *)hash), gv_stashpv("File::Hardhat::Cursor", 0));
 }
 
 static hardhat_cursor_t *generic_lookup(SV *self, SV *key) {
@@ -153,7 +153,7 @@ static SV *generic_read(hardhat_cursor_t *c, bool limit, STRLEN max) {
 	return newSVpvn(c->data, limit && c->datalen > max ? max : c->datalen);
 }
 
-MODULE = Hardhat  PACKAGE = Hardhat
+MODULE = File::Hardhat  PACKAGE = File::Hardhat
 
 PROTOTYPES: ENABLE
 
@@ -239,7 +239,7 @@ CODE:
 OUTPUT:
 	RETVAL
 
-MODULE = Hardhat  PACKAGE = Hardhat::Cursor
+MODULE = File::Hardhat  PACKAGE = File::Hardhat::Cursor
 
 SV *
 fetch(SV *self)

@@ -2,11 +2,11 @@ use strict;
 use warnings FATAL => 'all';
 use bytes;
 
-package Hardhat::Maker;
+package File::Hardhat::Maker;
 
 use base qw(DynaLoader);
 
-bootstrap Hardhat::Maker;
+bootstrap File::Hardhat::Maker;
 
 1;
 
@@ -18,11 +18,11 @@ __END__
 
 =head1 NAME
 
-Hardhat::Maker - wrapper for writing libhardhat files
+File::Hardhat::Maker - wrapper for writing libhardhat files
 
 =head1 SYNOPSIS
 
-Hardhat::Maker is a wrapper around the libhardhat library, and provides
+File::Hardhat::Maker is a wrapper around the libhardhat library, and provides
 a way to generate hardhat databases.
 
 All functions and methods die() should an error be encountered.
@@ -30,9 +30,9 @@ Use eval {} as required.
 
 =head2 USAGE
 
-=head2 $hhm = new Hardhat::Maker($filename)
+=head2 $hhm = new File::Hardhat::Maker($filename)
 
-Creates a new Hardhat::Maker object. A database will be created at
+Creates a new File::Hardhat::Maker object. A database will be created at
 $filename.
 
 =head2 $hhm->add($key, $val)

@@ -2,11 +2,11 @@ use strict;
 use warnings FATAL => 'all';
 use bytes;
 
-package Hardhat;
+package File::Hardhat;
 
 use base qw(DynaLoader);
 
-bootstrap Hardhat;
+bootstrap File::Hardhat;
 
 1;
 
@@ -18,11 +18,11 @@ __END__
 
 =head1 NAME
 
-Hardhat - wrapper for reading libhardhat files
+File::Hardhat - wrapper for reading libhardhat files
 
 =head1 SYNOPSIS
 
-Hardhat is a wrapper around the libhardhat library, and provides
+File::Hardhat is a wrapper around the libhardhat library, and provides
 read-only access to hardhat databases.
 
 All functions and methods die() should an error be encountered.
@@ -30,9 +30,9 @@ Use eval {} as required.
 
 =head1 USAGE
 
-=head2 $hh = new Hardhat($filename)
+=head2 $hh = new File::Hardhat($filename)
 
-Creates a new Hardhat object from the file named by $filename.
+Creates a new File::Hardhat object from the file named by $filename.
 
 =head2 $hh->exists($key)
 
@@ -52,11 +52,11 @@ Like $hh->get($key), but returns only at most $limit bytes of the data.
 
 =head2 $cc = $hh->find($key)
 
-Start a recursive listing for $key. Returns a Hardhat::Cursor object.
+Start a recursive listing for $key. Returns a File::Hardhat::Cursor object.
 
 =head2 $cc = $hh->ls($key)
 
-Start a shallow listing for $key. Returns a Hardhat::Cursor object.
+Start a shallow listing for $key. Returns a File::Hardhat::Cursor object.
 
 =head1 COPYRIGHT
 

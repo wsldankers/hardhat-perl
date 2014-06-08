@@ -1,6 +1,6 @@
 /******************************************************************************
 
-	Hardhat::Maker - Create hardhat databases in Perl
+	File::Hardhat::Maker - Create hardhat databases in Perl
 	Copyright (c) 2012 Wessel Dankers <wsl@fruit.je>
 
 	This program is free software; you can redistribute it and/or modify
@@ -77,7 +77,7 @@ static hardhat_maker_t *find_magic_hardhat_maker(SV *sv) {
 	return hhm;
 }
 
-MODULE = Hardhat::Maker  PACKAGE = Hardhat::Maker
+MODULE = File::Hardhat::Maker  PACKAGE = File::Hardhat::Maker
 
 PROTOTYPES: ENABLE
 
@@ -131,7 +131,7 @@ CODE:
 		data = ST(1);
 		databuf = SvPV(data, datalen);
 	} else {
-		croak("Too many arguments to Hardhat::Maker::parents()");
+		croak("Too many arguments to File::Hardhat::Maker::parents()");
 	}
 
 	if(!hardhat_maker_parents(hhm, databuf, datalen))

@@ -4,17 +4,17 @@
 
 =head1 NAME
 
-Hardhat::Cursor - wrapper for libhardhat (cursor objects)
+File::Hardhat::Cursor - wrapper for libhardhat (cursor objects)
 
 =head1 SYNOPSIS
 
-Hardhat is a wrapper around the libhardhat library, and provides
+File::Hardhat is a wrapper around the libhardhat library, and provides
 read-only access to hardhat databases.
 
 All functions and methods die() should an error be encountered.
 Use eval {} as required.
 
-Hardhat::Cursor is a cursor (or iterator) over entries in a hardhat
+File::Hardhat::Cursor is a cursor (or iterator) over entries in a hardhat
 database.
 
 =head1 USAGE

@@ -8,9 +8,9 @@ use Module::Build;
 
 my $build = new Module::Build(
 	dist_name => 'hardhat-perl',
-	dist_version => '1.0.1',
+	dist_version => '2.0.0',
 	dist_abstract => 'Wrapper for libhardhat',
-	module_name => 'Hardhat',
+	module_name => 'File::Hardhat',
 	license => 'perl',
 	create_makefile_pl => 'passthrough',
 	build_requires => {'ExtUtils::CBuilder' => 0},
