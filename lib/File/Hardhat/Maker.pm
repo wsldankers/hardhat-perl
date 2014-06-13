@@ -28,7 +28,7 @@ a way to generate hardhat databases.
 All functions and methods die() should an error be encountered.
 Use eval {} as required.
 
-=head2 USAGE
+=head1 USAGE
 
 =head2 $hhm = new File::Hardhat::Maker($filename)
 
