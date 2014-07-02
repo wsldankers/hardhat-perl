@@ -19,18 +19,19 @@ my $testhat_ne = "$tmp/testdata_ne.hh";
 my $testhat_le = "$tmp/testdata_le.hh";
 my $testhat_be = "$tmp/testdata_be.hh";
 
-my $hhm = new_ok('File::Hardhat::Maker', [$testhat_ne]) or BAIL_OUT('need a File::Hardhat::Maker object to run');
+do {
+	my $hhm = new_ok('File::Hardhat::Maker', [$testhat_ne]) or BAIL_OUT('need a File::Hardhat::Maker object to run');
 
-$hhm->add('', '');
-$hhm->add('bar', 'BBBBBBBBBB');
-$hhm->add('foo', 'AAAAAAAAAA');
-$hhm->add('dir/bar', 'DDDDDDDDDD');
-$hhm->add('dir/foo', 'CCCCCCCCCC');
-$hhm->add('dir/sub/bar', 'FFFFFFFFFF');
-$hhm->add('dir/sub/foo', 'EEEEEEEEEE');
-$hhm->parents;
-$hhm->finish;
-undef $hhm;
+	$hhm->add('', '');
+	$hhm->add('bar', 'BBBBBBBBBB');
+	$hhm->add('foo', 'AAAAAAAAAA');
+	$hhm->add('dir/bar', 'DDDDDDDDDD');
+	$hhm->add('dir/foo', 'CCCCCCCCCC');
+	$hhm->add('dir/sub/bar', 'FFFFFFFFFF');
+	$hhm->add('dir/sub/foo', 'EEEEEEEEEE');
+	$hhm->parents;
+	$hhm->finish;
+};
 
 do {
 	my $data = decode_base64(<<'EOT');
