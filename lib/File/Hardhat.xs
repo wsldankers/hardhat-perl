@@ -239,6 +239,22 @@ CODE:
 OUTPUT:
 	RETVAL
 
+SV *
+hardhat_normalize(SV *in)
+PREINIT:
+	SV *out;
+	char *bytes;
+	STRLEN len;
+CODE:
+	out = newSVsv(in);
+	sv_force_normal(out);
+	SvPV_force(out, len);
+	bytes = SvPVX(out);
+	SvCUR_set(out, hardhat_normalize(bytes, bytes, len));
+	RETVAL = out;
+OUTPUT:
+	RETVAL
+
 MODULE = File::Hardhat  PACKAGE = File::Hardhat::Cursor
 
 SV *

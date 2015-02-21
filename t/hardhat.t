@@ -15,6 +15,46 @@ my $tmp = File::Temp->newdir;
 BEGIN { use_ok('File::Hardhat') or BAIL_OUT('need File::Hardhat to run') }
 BEGIN { use_ok('File::Hardhat::Maker') or BAIL_OUT('need File::Hardhat::Maker to run') }
 
+foreach my $path (
+		['foo' => 'foo'],
+		['foo/bar' => 'foo/bar'],
+		['foo//bar' => 'foo/bar'],
+		['/foo/bar' => 'foo/bar'],
+		['//foo/bar' => 'foo/bar'],
+		['./foo/bar' => 'foo/bar'],
+		['.//foo/bar' => 'foo/bar'],
+		['foo/./bar' => 'foo/bar'],
+		['foo//./bar' => 'foo/bar'],
+		['foo/.//bar' => 'foo/bar'],
+		['foo//.//bar' => 'foo/bar'],
+		['../foo//.//bar' => 'foo/bar'],
+		['./..//foo//.//bar' => 'foo/bar'],
+		['.//..//foo//.//bar' => 'foo/bar'],
+		['/.//..//foo//.//bar' => 'foo/bar'],
+		['/..//foo//.//bar' => 'foo/bar'],
+		['//..//foo//.//bar' => 'foo/bar'],
+		['foo/bar/../bar' => 'foo/bar'],
+		['foo/bar//../bar' => 'foo/bar'],
+		['foo/bar/..//bar' => 'foo/bar'],
+		['foo/bar//..//bar' => 'foo/bar'],
+		['foo/bar/./../bar' => 'foo/bar'],
+		['foo/bar/.././bar' => 'foo/bar'],
+		['foo/bar/bar/..' => 'foo/bar'],
+		['foo/bar/bar//..' => 'foo/bar'],
+		['foo/bar/bar/../.' => 'foo/bar'],
+		['foo/bar/bar/..//.' => 'foo/bar'],
+		['foo/bar/bar//..//.' => 'foo/bar'],
+		['foo/bar/bar//../.' => 'foo/bar'],
+		['foo/bar/' => 'foo/bar'],
+		['foo/bar//' => 'foo/bar'],
+		['foo/bar//.' => 'foo/bar'],
+		['foo/bar/./' => 'foo/bar'],
+		['foo/bar/.//' => 'foo/bar'],
+	) {
+		my ($u, $n) = @$path;
+		is(hardhat_normalize($u), $n, "normalize");
+}
+
 my $testhat_ne = "$tmp/testdata_ne.hh";
 my $testhat_le = "$tmp/testdata_le.hh";
 my $testhat_be = "$tmp/testdata_be.hh";

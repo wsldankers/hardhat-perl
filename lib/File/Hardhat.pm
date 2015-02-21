@@ -4,7 +4,11 @@ use bytes;
 
 package File::Hardhat;
 
-use base qw(DynaLoader);
+use parent qw(DynaLoader);
+use Exporter qw(import);
+
+our @EXPORT =
+our @EXPORT_OK = qw(hardhat_normalize);
 
 bootstrap File::Hardhat;
 

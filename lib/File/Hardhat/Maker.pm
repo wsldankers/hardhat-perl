@@ -4,7 +4,7 @@ use bytes;
 
 package File::Hardhat::Maker;
 
-use base qw(DynaLoader);
+use parent qw(DynaLoader);
 
 bootstrap File::Hardhat::Maker;
 
