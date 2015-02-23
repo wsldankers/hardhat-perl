@@ -272,12 +272,12 @@ PPCODE:
 		XSRETURN_EMPTY;
 
 	if(GIMME_V == G_ARRAY) {
-		mXPUSHs(newSVpvn(c->key, c->keylen));
+		mXPUSHp(c->key, c->keylen);
 		mXPUSHs(generic_read(c, false, 0));
-		mXPUSHs(newSVuv(c->cur));
+		mXPUSHu(c->cur);
 		XSRETURN(3);
 	} else {
-		mXPUSHs(newSVpvn(c->key, c->keylen));
+		mXPUSHp(c->key, c->keylen);
 		XSRETURN(1);
 	}
 
@@ -296,12 +296,12 @@ PPCODE:
 		XSRETURN_EMPTY;
 
 	if(GIMME_V == G_ARRAY) {
-		mXPUSHs(newSVpvn(c->key, c->keylen));
+		mXPUSHp(c->key, c->keylen);
 		mXPUSHs(generic_read(c, true, max));
-		mXPUSHs(newSVuv(c->cur));
+		mXPUSHu(c->cur);
 		XSRETURN(3);
 	} else {
-		mXPUSHs(newSVpvn(c->key, c->keylen));
+		mXPUSHp(c->key, c->keylen);
 		XSRETURN(1);
 	}
 
@@ -320,9 +320,9 @@ PPCODE:
 		XSRETURN_EMPTY;
 
 	if(GIMME_V == G_ARRAY) {
-		mXPUSHs(newSVpvn(c->key, c->keylen));
+		mXPUSHp(c->key, c->keylen);
 		mXPUSHs(generic_read(c, false, 0));
-		mXPUSHs(newSVuv(c->cur));
+		mXPUSHu(c->cur);
 		XSRETURN(3);
 	} else {
 		mXPUSHs(generic_read(c, false, 0));
@@ -344,9 +344,9 @@ PPCODE:
 		XSRETURN_EMPTY;
 
 	if(GIMME_V == G_ARRAY) {
-		mXPUSHs(newSVpvn(c->key, c->keylen));
+		mXPUSHp(c->key, c->keylen);
 		mXPUSHs(generic_read(c, true, max));
-		mXPUSHs(newSVuv(c->cur));
+		mXPUSHu(c->cur);
 		XSRETURN(3);
 	} else {
 		mXPUSHs(generic_read(c, true, max));
