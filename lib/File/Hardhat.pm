@@ -62,6 +62,16 @@ Start a recursive listing for $key. Returns a File::Hardhat::Cursor object.
 
 Start a shallow listing for $key. Returns a File::Hardhat::Cursor object.
 
+=head2 $norm = hardhat_normalize($str)
+
+Returns a normalized version of $str, that is, with leading and trailing
+slashes removed and all "." and ".." path components resolved.
+
+=head2 hardhat_normalize($str)
+
+If you use hardhat_normalize() in void context, it operates on the argument
+(in-place).
+
 =head1 COPYRIGHT
 
 Copyright (c) 2011,2012,2014 Wessel Dankers <wsl@fruit.je>.

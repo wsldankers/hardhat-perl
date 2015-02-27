@@ -15,6 +15,19 @@ my $tmp = File::Temp->newdir;
 BEGIN { use_ok('File::Hardhat') or BAIL_OUT('need File::Hardhat to run') }
 BEGIN { use_ok('File::Hardhat::Maker') or BAIL_OUT('need File::Hardhat::Maker to run') }
 
+do {
+	my $x = '../..';
+	my $y = hardhat_normalize($x);
+	is($x, '../..', "hardhat_normalize() in scalar context does not modify its argument");
+	is($y, '', "hardhat_normalize() in scalar context returns the normalized value");
+	$x = '../..';
+	my @y = hardhat_normalize($x);
+	is($x, '../..', "hardhat_normalize() in list context does not modify its argument");
+	is_deeply(\@y, [''], "hardhat_normalize() in list context returns the normalized value");
+	hardhat_normalize($x);
+	is($x, '', "hardhat_normalize() in void context modifies its argument");
+};
+
 foreach my $path (
 		['foo' => 'foo'],
 		['foo/bar' => 'foo/bar'],

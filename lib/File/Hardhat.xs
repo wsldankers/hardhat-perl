@@ -245,15 +245,22 @@ PREINIT:
 	SV *out;
 	char *bytes;
 	STRLEN len;
-CODE:
-	out = newSVsv(in);
-	sv_force_normal(out);
-	SvPV_force(out, len);
-	bytes = SvPVX(out);
-	SvCUR_set(out, hardhat_normalize(bytes, bytes, len));
-	RETVAL = out;
-OUTPUT:
-	RETVAL
+PPCODE:
+	if(GIMME_V == G_VOID) {
+		sv_force_normal(in);
+		SvPV_force(in, len);
+		bytes = SvPVX(in);
+		SvCUR_set(in, hardhat_normalize(bytes, bytes, len));
+		XSRETURN_EMPTY;
+	} else {
+		out = newSVsv(in);
+		sv_force_normal(out);
+		SvPV_force(out, len);
+		bytes = SvPVX(out);
+		SvCUR_set(out, hardhat_normalize(bytes, bytes, len));
+		mXPUSHs(out);
+		XSRETURN(1);
+	}
 
 MODULE = File::Hardhat  PACKAGE = File::Hardhat::Cursor
 
