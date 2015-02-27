@@ -1,3 +1,11 @@
+hardhat-perl (2.1.0) stable; urgency=medium
+
+  * Add hardhat_normalize utility function
+  * Expand test suite
+  * Miscellaneous bugfixes
+
+ -- Wessel Dankers <W.S.L.Dankers@uvt.nl>  Fri, 27 Feb 2015 11:15:20 +0100
+
 hardhat-perl (2.0.0) stable; urgency=low
 
   * Switch to dh

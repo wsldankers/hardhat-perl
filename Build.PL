@@ -16,7 +16,7 @@ do {
 
 my $build = new Module::Build(
 	dist_name => 'hardhat-perl',
-	dist_version => '2.0.0',
+	dist_version => '2.1.0',
 	dist_abstract => 'Wrapper for libhardhat',
 	module_name => 'File::Hardhat',
 	license => 'perl',
