@@ -31,6 +31,11 @@ do {
 foreach my $path (
 		['foo' => 'foo'],
 		['foo/bar' => 'foo/bar'],
+		['foo/.' => 'foo'],
+		['foo/..' => ''],
+		['foo/../..' => ''],
+		['..' => ''],
+		['../..' => ''],
 		['foo//bar' => 'foo/bar'],
 		['/foo/bar' => 'foo/bar'],
 		['//foo/bar' => 'foo/bar'],
@@ -65,7 +70,7 @@ foreach my $path (
 		['foo/bar/.//' => 'foo/bar'],
 	) {
 		my ($u, $n) = @$path;
-		is(hardhat_normalize($u), $n, "normalize");
+		is(hardhat_normalize($u), $n, "normalize \"$u\"");
 }
 
 my $testhat_ne = "$tmp/testdata_ne.hh";
