@@ -80,7 +80,7 @@ STATIC MGVTBL hardhat_cursor_vtable = {
 };
 
 static SV *generic_cursor(SV *self, SV *key, bool recursive) {
-	void *hh;
+	hardhat_t *hh;
 	void **obj;
 	struct cursorwrapper w;
 	hardhat_cursor_t *c;
@@ -110,7 +110,7 @@ static SV *generic_cursor(SV *self, SV *key, bool recursive) {
 }
 
 static hardhat_cursor_t *generic_lookup(SV *self, SV *key) {
-	void *hh;
+	hardhat_t *hh;
 	hardhat_cursor_t *c;
 	void **obj;
 	STRLEN len;
@@ -131,6 +131,7 @@ static hardhat_cursor_t *generic_lookup(SV *self, SV *key) {
 	return c;
 }
 
+/*
 static SV *generic_get(SV *self, SV *key, bool limit, STRLEN max) {
 	SV *res;
 	hardhat_cursor_t *c;
@@ -139,6 +140,7 @@ static SV *generic_get(SV *self, SV *key, bool limit, STRLEN max) {
 	hardhat_cursor_free(c);
 	return res;
 }
+*/
 
 static SV *generic_exists(SV *self, SV *key) {
 	SV *res;
@@ -161,7 +163,7 @@ SV *
 new(char *class, const char *filename)
 PREINIT:
 	HV *hash;
-	void *hh;
+	hardhat_t *hh;
 CODE:
 	hh = hardhat_open(filename);
 	if(!hh)
@@ -179,7 +181,7 @@ CODE:
 OUTPUT:
 	RETVAL
 
-SV *
+void
 get(SV *self, SV *key)
 PREINIT:
 	hardhat_cursor_t *c;
@@ -202,7 +204,7 @@ PPCODE:
 		XSRETURN(1);
 	}
 
-SV *
+void
 getn(SV *self, SV *key, STRLEN max)
 PREINIT:
 	hardhat_cursor_t *c;
@@ -239,7 +241,7 @@ CODE:
 OUTPUT:
 	RETVAL
 
-SV *
+void
 hardhat_normalize(SV *in)
 PREINIT:
 	SV *out;
@@ -264,7 +266,7 @@ PPCODE:
 
 MODULE = File::Hardhat  PACKAGE = File::Hardhat::Cursor
 
-SV *
+void
 fetch(SV *self)
 PREINIT:
 	hardhat_cursor_t *c;
@@ -288,7 +290,7 @@ PPCODE:
 		XSRETURN(1);
 	}
 
-SV *
+void
 fetchn(SV *self, STRLEN max)
 PREINIT:
 	hardhat_cursor_t *c;
@@ -312,7 +314,7 @@ PPCODE:
 		XSRETURN(1);
 	}
 
-SV *
+void
 read(SV *self)
 PREINIT:
 	hardhat_cursor_t *c;
@@ -336,7 +338,7 @@ PPCODE:
 		XSRETURN(1);
 	}
 
-SV *
+void
 readn(SV *self, STRLEN max)
 PREINIT:
 	hardhat_cursor_t *c;
