@@ -47,7 +47,7 @@ static void *attach_magic(SV *sv, MGVTBL *vtable, const char *name, void *data, 
 	return SvPV_nolen(obj);
 }
 
-static int free_magic_hardhat_maker(pTHX_ SV *sv, MAGIC *mg) {
+static int free_magic_hardhat_maker(pTHX_ SV *sv PERL_UNUSED_DECL, MAGIC *mg) {
 	void **obj = (void *)SvPV_nolen(mg->mg_obj);
 	if(obj)
 		hardhat_maker_free(*obj);
