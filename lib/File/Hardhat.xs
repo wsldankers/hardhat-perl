@@ -91,7 +91,6 @@ static SV *generic_cursor(SV *self, SV *key, bool recursive) {
 	obj = find_magic(self, &hardhat_vtable);
 	if(!obj)
 		croak("Invalid hardhat object");
-	w.hardhat = SvRV(self);
 
 	hh = *obj;
 	if(!hh)
@@ -101,8 +100,11 @@ static SV *generic_cursor(SV *self, SV *key, bool recursive) {
 	c = hardhat_cursor(hh, k, len);
 	if(!c)
 		croak("Can't lookup %s: %s\n", k, strerror(errno));
+
+	w.hardhat = SvRV(self);
 	w.cursor = c;
 	w.recursive = recursive;
+
 	hash = newHV();
 	attach_magic((SV *)hash, &hardhat_cursor_vtable, "hardhat_cursor", &w, sizeof w);
 	SvREFCNT_inc(w.hardhat);
